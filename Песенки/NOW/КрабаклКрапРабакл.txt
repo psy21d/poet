@@ -9,3 +9,31 @@
 Обратгл Гаггл Даггл
 Адгдабгдл Браткл Ваткл
 Крантангл Тангангл Банкл 
+
+
+function sum (...args) {
+    let s = 0;
+    for (let arg of args) s += arg;
+    return function(...args) {
+        if (args.length > 0) {
+            let t = 0;
+            for (let arg of args) t += arg;
+            s = s + t;
+            return arguments.callee;
+        } else {
+            return s;
+        }
+    };
+}
+
+function add(x) {
+    return function(y) {
+        if (typeof y !== 'undefined') {
+            x = x + y;
+            return arguments.callee;
+        } else {
+            return x;
+        }
+    };
+}
+
